@@ -58,6 +58,7 @@ Content-Type: application/json
 #Post request
 
 Url - http://APP_IP_ADDRESS_OR_DOMAIN_NAME/v1/api/doc
+
 Verb - POST
 
 Request body
