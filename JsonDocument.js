@@ -1,6 +1,6 @@
 module.exports.IsValidJson = function (inputJson) {
   try{
-      JSON.parse(text);
+      JSON.parse(inputJson);
       return true;
   }
   catch (error){
