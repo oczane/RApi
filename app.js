@@ -68,7 +68,7 @@ app.use(function(err, req, res, next) {
      .send('error', {message: err.message, error: {} });
 });
 
-app.listen(3000, () => {
+app.listen(8080, () => {
   console.log("App is running");
 });
 
