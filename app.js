@@ -40,6 +40,9 @@ function Authorize(req, res, next) {
   }
 }
 
+app.use('/', function (req, res, next) {
+  res.status(200).send('Unauthorized access');
+})
 app.use('/v1/api/doc', Authorize, routes);
 
 // catch 404 and forward to error handler
