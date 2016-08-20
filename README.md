@@ -40,13 +40,13 @@ location / {
 
 Basic auth
 
-Username: rakesh
-Password: Rakesh@@123
------------------------------
+1. Username: rakesh
+2. Password: Rakesh@@123
+
+
 Header
 
 Content-Type: application/json
------------------------------
 
 #Post request
 
@@ -68,6 +68,7 @@ Request body
 }
 
 #Get request
+
 Url - http://APP_IP_ADDRESS_OR_DOMAIN_NAME/v1/api/doc/57b83b2ad68c519d547b911a
 
 Verb - GET
