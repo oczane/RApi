@@ -10,7 +10,11 @@ RESTfull API using Basic Auth
 
 1. install nvm and install node 4.5.0
 2. clone git repository https://github.com/oczane/RApi.git
-3. install forever and use ~~~~ forever start app.js ~~~~
+3. install forever and use
+  ```
+  forever start app.js 
+
+  ```
 4. install nginx (sudo apt-get install nginx)
 5. sudo vi /etc/nginx/sites-available/default and made below changes.
 
