@@ -4,6 +4,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var auth = require('basic-auth');
+var throttle = require("express-throttle");
 
 var routes = require('./routes/index');
 var app = express();
@@ -40,7 +41,7 @@ function Authorize(req, res, next) {
   }
 }
 
-app.use('/v1/api/doc', Authorize, routes);
+app.use('/v1/api/doc', Authorize, throttle({ "rate": "5/s" }), routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
