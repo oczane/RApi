@@ -12,7 +12,7 @@ RESTfull API using Basic Auth
 2. clone git repository https://github.com/oczane/RApi.git
 3. install forever and use
   ```
-  forever start app.js 
+  forever start app.js
 
   ```
 4. install nginx (sudo apt-get install nginx)
@@ -39,6 +39,9 @@ location / {
 
 6. sudo service nginx restart
 
+# Throttling
+
+1. 5/s
 
 # Using Endpoint
 
