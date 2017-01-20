@@ -3,44 +3,23 @@ var router = express.Router();
 var DocumentModel = require('../Model/DocumentModel');
 var mongoose = require('mongoose');
 var JsonDocument = require('../JsonDocument')
+var Client = require('node-rest-client').Client;
 
-//Get uploaded json by ObectId
-router.get('/:id', function(req, res, next) {
-  //Check if correct object id
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(200).send({data: '', error: 1, errorMessage: 'Invalid document id' });
-  }
-  else {
-    DocumentModel.findById(req.params.id, function(err, document) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.status(200).send({data: document.JsonDocument, error: 0, errorMessage: '' });
-    });
-  }
-});
-
-//Post uploaded json
 router.post('/', function(req, res, next) {
-  var documentCustomUrl = req.protocol + '://' + req.headers.host + '/v1/api/doc/';
+  //console.log(req.body.short_description);
 
-  if (!JsonDocument.IsValidJson(req.body.jsondocument)) {
-    res.status(200).send({data: '', error: 1, errorMessage: 'Invalid JSON data' });
-  }
-  else {
-    var document = new DocumentModel();
+  var options_auth = { user: "sajva", password: "Sajva@123" };
+  var client = new Client(options_auth);
+  var curDate = new Date();
 
-    document.JsonDocument  = JSON.parse(req.body.jsondocument);
+  var args = {
+      data: { short_description: req.body.short_description + ". Message sent @ " + curDate.toString() },
+      headers: { "Content-Type": "application/json", "Accept": "application/json" }
+  };
 
-    document.save(function(err) {
-      if (err) {
-        console.log(err);
-      }
-    });
-
-    res.status(200).send({msg: 'Document saved successfully.', documentUrl: documentCustomUrl + document._id });
-  }
+  client.post("https://dev19739.service-now.com/api/now/v2/table/incident", args, function (data, response) {
+      res.status(200).send({msg: 'Document saved successfully.', result: data});
+  });
 });
 
 module.exports = router;
