@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
+/*
 mongoose.connect("mongodb://localhost/JsonMartDB", (err) => {
   //to-do, re-factor it. App should react accordingly, when Mongo is up/down
   if (err) {
@@ -27,7 +27,7 @@ mongoose.connect("mongodb://localhost/JsonMartDB", (err) => {
     //process.exit();
   }
 });
-
+*/
 
 function Authorize(req, res, next) {
   var credentials = auth(req);
@@ -41,7 +41,9 @@ function Authorize(req, res, next) {
   }
 }
 
-app.use('/v1/api/doc', Authorize, throttle({ "rate": "5/s" }), routes);
+//app.use('/v1/api/doc', Authorize, throttle({ "rate": "5/s" }), routes);
+
+app.use('/v1/api/doc', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
